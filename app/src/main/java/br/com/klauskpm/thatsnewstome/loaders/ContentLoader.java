@@ -13,11 +13,13 @@ import br.com.klauskpm.thatsnewstome.api.TheGuardianAPI;
  */
 
 public class ContentLoader extends AsyncTaskLoader<ArrayList<News>> {
+    private Context mContext;
     private String mQuery;
 
     public ContentLoader(Context context, String query) {
         super(context);
 
+        mContext = context;
         mQuery = query;
     }
 
@@ -28,6 +30,6 @@ public class ContentLoader extends AsyncTaskLoader<ArrayList<News>> {
 
     @Override
     public ArrayList<News> loadInBackground() {
-        return new TheGuardianAPI().getContent(mQuery);
+        return new TheGuardianAPI(mContext).getContent(mQuery);
     }
 }

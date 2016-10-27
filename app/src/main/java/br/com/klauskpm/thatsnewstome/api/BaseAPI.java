@@ -18,7 +18,7 @@ abstract class BaseAPI {
     abstract class SubBaseAPI {
         private Uri.Builder mPathBuilder;
 
-        private Uri.Builder mCurrentBuilder = null;
+        protected Uri.Builder mCurrentBuilder = null;
 
         SubBaseAPI(String mPath) {
             Uri uri = Uri.parse(mBaseUrl);
