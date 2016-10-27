@@ -1,13 +1,17 @@
 package br.com.klauskpm.thatsnewstome;
 
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 
@@ -16,18 +20,63 @@ import br.com.klauskpm.thatsnewstome.loaders.ContentLoader;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<News>> {
     private NewsAdapter mAdapter;
+    private SearchView mNewsSearch;
+    private LoaderManager mLoaderManager;
+    private Loader mLoader;
+    private ConnectivityManager mConnectManager;
+    private String mQuery;
+    private int LOADER_NEWS_ID = 0;
+
+    private SearchView.OnQueryTextListener mNewsOnQueryTextListener = new SearchView.OnQueryTextListener() {
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+            mAdapter.clear();
+            mQuery = query;
+            initLoader();
+            mNewsSearch.clearFocus();
+            return true;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String newText) {
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mConnectManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        mNewsSearch = (SearchView) findViewById(R.id.news_search);
+        mNewsSearch.setOnQueryTextListener(mNewsOnQueryTextListener);
+
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
 
         ListView list = (ListView) findViewById(R.id.list);
         list.setAdapter(mAdapter);
+    }
 
-        getLoaderManager().initLoader(0, null, this);
+    private boolean isConnected() {
+        NetworkInfo networkInfo = mConnectManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+    private void initLoader() {
+        if (mLoaderManager == null)
+            mLoaderManager = getLoaderManager();
+
+        if (!isConnected()) {
+
+            return;
+        }
+
+        if (mLoader == null)
+            mLoader = mLoaderManager.initLoader(LOADER_NEWS_ID, null, this);
+        else
+            mLoaderManager.restartLoader(LOADER_NEWS_ID, null, this);
     }
 
     @Override
@@ -49,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<ArrayList<News>> onCreateLoader(int id, Bundle args) {
-        return new ContentLoader(this, "search");
+        return new ContentLoader(this, mQuery);
     }
 
     @Override
