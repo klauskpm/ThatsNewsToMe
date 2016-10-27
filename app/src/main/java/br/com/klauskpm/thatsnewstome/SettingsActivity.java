@@ -25,9 +25,8 @@ public class SettingsActivity extends AppCompatActivity {
 
             Preference pageSize = findPreference(getString(R.string.pref_page_size_key));
             Preference orderBy = findPreference(getString(R.string.pref_order_by_key));
-            Preference starRating = findPreference(getString(R.string.pref_star_rating_key));
 
-            bindPreferenceSummaryToValue(pageSize, orderBy, starRating);
+            bindPreferenceSummaryToValue(pageSize, orderBy);
         }
 
         private void bindPreferenceSummaryToValue(Preference... preferences) {

@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:key="@string/pref_filter_key"
-        android:title="@string/pref_filter_label">
-
-        <br.com.klauskpm.thatsnewstome.NumberPickerPreference
-            android:defaultValue="@string/pref_star_rating_default"
-            android:key="@string/pref_star_rating_key"
-            android:title="@string/pref_star_rating_label"
-            maxValue="5"
-            minValue="1" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:key="@string/pref_page_configuration_key"
         android:title="@string/pref_page_configuration_label">
 
