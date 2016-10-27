@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Isso São Notícias Para Mim</string>
+    <string name="no_connection">Não tem conexão.</string>
+    <string name="no_result">Não tem resultado para \'%s\'</string>
+    <string name="pref_filter_label">Filtro</string>
+    <string name="pref_order_by_label">Ordernar por</string>
+    <string name="pref_order_by_newest_label">Mais novo</string>
+    <string name="pref_order_by_oldest_label">Mais velho</string>
+    <string name="pref_order_by_relevance_label">Relevância</string>
+    <string name="pref_page_configuration_label">Configuração da Página</string>
+    <string name="pref_page_size_label">Tamanho da Página</string>
+    <string name="pref_star_rating_label">Pontuação de Estrelas</string>
+    <string name="search_topic">Procure por um tópico</string>
+    <string name="settings">Configurações</string>
+</resources>
