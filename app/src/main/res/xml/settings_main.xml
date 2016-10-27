@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="@string/pref_filter_key"
+        android:title="@string/pref_filter_label">
+
+        <br.com.klauskpm.thatsnewstome.NumberPickerPreference
+            android:defaultValue="@string/pref_star_rating_default"
+            android:inputType="number"
+            android:key="@string/pref_star_rating_key"
+            android:selectAllOnFocus="true"
+            android:title="@string/pref_star_rating_label" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="@string/pref_page_configuration_key"
+        android:title="@string/pref_page_configuration_label">
+
+        <ListPreference
+            android:defaultValue="@string/pref_order_by_default"
+            android:entries="@array/settings_order_by_labels"
+            android:entryValues="@array/settings_order_by_values"
+            android:key="@string/pref_order_by_key"
+            android:title="@string/pref_order_by_label" />
+
+        <EditTextPreference
+            android:defaultValue="@string/pref_page_size_default"
+            android:inputType="number"
+            android:key="@string/pref_page_size_key"
+            android:selectAllOnFocus="true"
+            android:title="@string/pref_page_size_label" />
+    </PreferenceCategory>
+</PreferenceScreen>
