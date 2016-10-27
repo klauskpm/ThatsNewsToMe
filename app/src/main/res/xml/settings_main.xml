@@ -6,10 +6,10 @@
 
         <br.com.klauskpm.thatsnewstome.NumberPickerPreference
             android:defaultValue="@string/pref_star_rating_default"
-            android:inputType="number"
             android:key="@string/pref_star_rating_key"
-            android:selectAllOnFocus="true"
-            android:title="@string/pref_star_rating_label" />
+            android:title="@string/pref_star_rating_label"
+            maxValue="5"
+            minValue="1" />
 
     </PreferenceCategory>
 
