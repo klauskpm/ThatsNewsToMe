@@ -9,30 +9,19 @@
 
     <SearchView
         android:id="@+id/news_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@android:color/white" />
+        style="@style/NewsSearch" />
 
     <ListView
         android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/news_search" />
+        android:layout_below="@id/news_search"
+        style="@style/NewsList" />
 
     <TextView
         android:id="@+id/warning_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/search_topic" />
+        android:text="@string/search_topic"
+        style="@style/WarningMessages" />
 
     <ProgressBar
         android:id="@+id/spinner_loader"
-        style="@style/Base.Widget.AppCompat.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone" />
+        style="@style/Base.Widget.AppCompat.ProgressBar.News" />
 </RelativeLayout>
