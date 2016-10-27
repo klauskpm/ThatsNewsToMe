@@ -11,11 +11,16 @@ import br.com.klauskpm.thatsnewstome.api.TheGuardianAPI;
 /**
  * Created by klaus on 26/10/16.
  */
-
 public class ContentLoader extends AsyncTaskLoader<ArrayList<News>> {
     private Context mContext;
     private String mQuery;
 
+    /**
+     * Instantiates a new Content loader.
+     *
+     * @param context the context
+     * @param query   the query
+     */
     public ContentLoader(Context context, String query) {
         super(context);
 

@@ -12,7 +12,6 @@ import java.nio.charset.Charset;
 /**
  * Created by klaus on 26/10/16.
  */
-
 public final class QueryUtils {
     private static final int CONNECT_TIMEOUT = 15000;
     private static final int READ_TIMEOUT = 10000;
@@ -22,22 +21,23 @@ public final class QueryUtils {
 
     private QueryUtils() {}
 
-    private static URL createUrl(String stringUrl) {
-        URL url = null;
-
-        try {
-            url = new URL(stringUrl);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        return url;
-    }
-
+    /**
+     * Request get string.
+     *
+     * @param stringUrl the string url
+     * @return the string
+     */
     public static String requestGet(String stringUrl) {
         return request(stringUrl, GET);
     }
 
+    /**
+     * Do a HTTP request
+     *
+     * @param stringUrl to be requested
+     * @param method for the request (e.g. GET, POST)
+     * @return the result of the request as a string
+     */
     private static String request(String stringUrl, String method) {
         URL url = createUrl(stringUrl);
         String response = null;
@@ -51,6 +51,32 @@ public final class QueryUtils {
         return response;
     }
 
+    /**
+     * Creates the URL from a string
+     *
+     * @param stringUrl for the request
+     * @return returns a {@link URL}
+     */
+    private static URL createUrl(String stringUrl) {
+        URL url = null;
+
+        try {
+            url = new URL(stringUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return url;
+    }
+
+    /**
+     * Make the HTTP request
+     *
+     * @param url to be requested
+     * @param method of the request
+     * @return the request response as a {@link String}
+     * @throws IOException
+     */
     private static String makeHttpRequest(URL url, String method) throws IOException {
         if (url == null)
             return null;
@@ -83,6 +109,13 @@ public final class QueryUtils {
         return response;
     }
 
+    /**
+     * Read from the input stream
+     *
+     * @param inputStream generated from the request
+     * @return the stream response as a {@link String}
+     * @throws IOException
+     */
     private static String readFromStream(InputStream inputStream) throws IOException {
         StringBuilder output = new StringBuilder();
         if (inputStream != null) {

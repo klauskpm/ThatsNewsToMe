@@ -8,6 +8,9 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ * The type Settings activity.
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
@@ -16,6 +19,9 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
     }
 
+    /**
+     * The type News preference fragment.
+     */
     public static class NewsPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
 
         @Override

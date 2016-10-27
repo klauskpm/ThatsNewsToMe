@@ -17,7 +17,6 @@ import br.com.klauskpm.thatsnewstome.R;
 /**
  * Created by klaus on 26/10/16.
  */
-
 public class TheGuardianAPI extends BaseAPI {
     private final String API_KEY_PARAM = "api-key";
     private final String API_KEY = "test";
@@ -26,6 +25,11 @@ public class TheGuardianAPI extends BaseAPI {
 
     private Context mContext;
 
+    /**
+     * Instantiates a new The guardian api.
+     *
+     * @param context the context
+     */
     public TheGuardianAPI(Context context) {
         super("http://content.guardianapis.com/");
 
@@ -33,6 +37,12 @@ public class TheGuardianAPI extends BaseAPI {
         mContent = new ContentSubAPI();
     }
 
+    /**
+     * Gets content.
+     *
+     * @param query the query
+     * @return the content
+     */
     public ArrayList<News> getContent(String query) {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(mContext);
@@ -54,6 +64,11 @@ public class TheGuardianAPI extends BaseAPI {
     }
 
     private class TheGuardianSubAPI extends SubBaseAPI {
+        /**
+         * Instantiates a new The guardian sub api.
+         *
+         * @param mPath the m path
+         */
         TheGuardianSubAPI(String mPath) {
             super(mPath);
         }
@@ -64,19 +79,39 @@ public class TheGuardianAPI extends BaseAPI {
         }
     }
 
+    /**
+     * Content Path API
+     */
     private class ContentSubAPI extends TheGuardianSubAPI {
         private final static String ORDER_BY_PARAM = "order-by";
         private final static String PAGE_SIZE_PARAM = "page-size";
 
+        /**
+         * Instantiates a new Content sub api.
+         */
         ContentSubAPI() {
             super("search");
         }
 
+        /**
+         * Create request content sub api.
+         *
+         * @param query the query
+         * @return the content sub api
+         */
         ContentSubAPI createRequest(String query) {
             createUriBuilder().appendQueryParameter("q", query);
             return this;
         }
 
+        /**
+         * Set the amount of results from request.
+         *
+         * Range from 1 - 50 per page
+         *
+         * @param pageSize of the request
+         * @return the SubApi class
+         */
         private ContentSubAPI setPageSize(String pageSize) {
             int pageSizeValue = Integer.parseInt(pageSize);
             if (pageSizeValue < 1)
@@ -89,16 +124,35 @@ public class TheGuardianAPI extends BaseAPI {
             return this;
         }
 
+        /**
+         * Set the type of order for the news
+         *
+         * It can be: 'newest', 'oldest', 'relevance';
+         *
+         * @param orderBy the type
+         * @return the SubApi
+         */
         private ContentSubAPI setOrderBy(String orderBy) {
             mCurrentBuilder.appendQueryParameter(ORDER_BY_PARAM, orderBy);
             return this;
         }
 
+        /**
+         * Get array list.
+         *
+         * @return the array list
+         */
         ArrayList<News> get() {
             String JSONString = execute();
             return extract(JSONString);
         }
 
+        /**
+         * Extract a list of News from a JSON String
+         *
+         * @param JSONString of news
+         * @return an ArrayList of News
+         */
         private ArrayList<News> extract(String JSONString) {
             ArrayList<News> response = new ArrayList<News>();
 
